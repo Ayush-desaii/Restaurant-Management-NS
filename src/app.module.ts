@@ -9,6 +9,7 @@ import { Items } from './entities/item.entity';
 import { UsersModule } from './user/user.module'; 
 import { RestaurantsModule } from './restaurant/restaurant.module';
 import { OrdersModule } from './order/order.module';
+import { ItemsModule } from './item/item.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -28,7 +29,8 @@ import { OrderItems } from './entities/orderitem.entity';
     }),
     UsersModule,
     RestaurantsModule,
-    OrdersModule
+    OrdersModule,
+    ItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
