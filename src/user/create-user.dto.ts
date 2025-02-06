@@ -1,9 +1,11 @@
-import { IsString, IsEmail, IsPhoneNumber, IsArray, ArrayNotEmpty, IsUUID, IsNotEmpty, isValidationOptions } from '@nestjs/class-validator';
-import { IsOptional } from '@nestjs/class-validator'; // Optional for update scenarios
+import { IsString, IsEmail, IsPhoneNumber, IsArray, ArrayNotEmpty, IsUUID, IsNotEmpty, Length} from '@nestjs/class-validator';
+
 
 export class CreateUserDTO {
+
   @IsNotEmpty()
   @IsString()
+  @Length(3, 30, { message: 'Name must be between 3 and 30 characters' })
   name: string;
 
   @IsNotEmpty()
@@ -16,10 +18,11 @@ export class CreateUserDTO {
 
   @IsNotEmpty()
   @IsString()
+  @Length(5, 50, { message: 'Address must be between 5 and 50 characters' })
   address: string;
 
   @IsArray()
-  @IsNotEmpty()
+  @ArrayNotEmpty()
   @IsUUID('4', { message: 'Restaurant ID must be a valid UUID' })
   restaurantId: string[]; // For restaurantId, if it's just an ID reference
 

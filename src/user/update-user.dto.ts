@@ -5,10 +5,12 @@ import {
     Length, 
     IsArray, 
     IsInt, 
-    IsOptional 
+    IsOptional,
+    IsPhoneNumber 
   } from '@nestjs/class-validator';
   
   export class UpdateUserDTO {
+    
     @IsOptional()
     @IsString()
     @Length(3, 30, { message: 'Name must be between 3 and 30 characters' })
@@ -16,7 +18,7 @@ import {
   
     @IsOptional()
     @IsString()
-    @Length(10, 10, { message: 'Mobile number must be exactly 10 digits' })
+    @IsPhoneNumber( undefined,{ message: 'Mobile number must be valid' })
     mobileno?: string;
   
     @IsOptional()
@@ -29,7 +31,7 @@ import {
     address?: string;
   
     @IsOptional()
-    @IsInt({ message: 'Restaurant ID must be an integer' })
+    @IsArray({ message: 'Restaurant ID must be an integer' })
     restaurantId?: number;
   
     @IsOptional()
