@@ -10,6 +10,7 @@ import { UsersModule } from './user/user.module';
 import { RestaurantsModule } from './restaurant/restaurant.module';
 import { OrdersModule } from './order/order.module';
 import { ItemsModule } from './item/item.module';
+import { OrderItemsModule } from './orderitem/orderitem.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -31,6 +32,7 @@ import { OrderItems } from './entities/orderitem.entity';
     RestaurantsModule,
     OrdersModule,
     ItemsModule,
+    OrderItemsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

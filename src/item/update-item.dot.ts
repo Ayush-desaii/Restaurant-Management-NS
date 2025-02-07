@@ -13,7 +13,6 @@ export class UpdateItemDTO {
     name: string;
 
     @IsOptional()
-    @IsString()
     @IsNumber()
     @Min(0)
     Price: number;
@@ -23,9 +22,8 @@ export class UpdateItemDTO {
     @Length(5, 100, { message: 'Description must be between 5 and 100 characters' })
     description: string;
 
-    @IsArray()
     @IsOptional()
-    @IsUUID('4', { message: 'Each item ID must be a valid UUID' })
-    restaurantIds: string[]; // For restaurantId, if it's just an ID reference
+    @IsUUID('4', { message: 'Each restaurent ID must be a valid UUID' })
+    restaurantId: string; // For restaurantId, if it's just an ID reference
 
 }

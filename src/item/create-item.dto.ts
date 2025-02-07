@@ -13,7 +13,7 @@ export class CreateItemDTO {
 
     @IsNotEmpty()
     @IsNumber()
-    @Min(0)
+    @Min(0, { message: 'Price must be greater than 0' })
     Price: number;
 
     @IsNotEmpty()
@@ -21,11 +21,8 @@ export class CreateItemDTO {
     @Length(5, 100, { message: 'Description must be between 5 and 100 characters' })
     description: string;
 
-    @IsArray()
-    @ArrayNotEmpty()
+    @IsNotEmpty()
     @IsUUID('4', { message: 'Each item ID must be a valid UUID' })
-    restaurantIds: string[]; // For restaurantId, if it's just an ID reference
-
-    
+    restaurantId: string; // For restaurantId, if it's just an ID reference
 
 }
