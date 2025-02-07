@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, OneToOne } from "typeorm";
 import { IsEmail } from "@nestjs/class-validator";
 import { Restaurants } from "./restaurant.entity";
+import { Images } from "../entities/image.entity";
 import { Orders } from "./order.entity";
 
 @Entity()
@@ -20,6 +21,9 @@ export class Users {
 
     @Column("varchar", { length: 50 })
     address: string
+
+    @OneToOne(() => Images, (images) => images.user)
+    images: Images
 
     @ManyToMany(() => Restaurants, (restaurants) => restaurants.users)
     restaurants: Restaurants[]

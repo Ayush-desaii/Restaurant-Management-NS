@@ -11,6 +11,8 @@ import { RestaurantsModule } from './restaurant/restaurant.module';
 import { OrdersModule } from './order/order.module';
 import { ItemsModule } from './item/item.module';
 import { OrderItemsModule } from './orderitem/orderitem.module';
+import { CloudinaryModule } from './Image/image.module';
+import { Images } from './entities/image.entity';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -25,7 +27,7 @@ import { OrderItems } from './entities/orderitem.entity';
       username: 'postgres',
       password: '1234',
       database: 'restaurant-ns',
-      entities: [Restaurants, Users, Orders, Items, OrderItems],
+      entities: [Restaurants, Users, Orders, Items, OrderItems, Images],
       synchronize: true, // Set to false in production
     }),
     UsersModule,
@@ -33,6 +35,7 @@ import { OrderItems } from './entities/orderitem.entity';
     OrdersModule,
     ItemsModule,
     OrderItemsModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
