@@ -2,7 +2,7 @@
 import {
     IsString, IsNumber, Min
     , IsArray, IsUUID, Length,
-    IsOptional
+    IsOptional, IsUrl
 } from '@nestjs/class-validator';
 // import { IsOptional } from '@nestjs/class-validator'; 
 
@@ -22,6 +22,10 @@ export class UpdateItemDTO {
     @Length(5, 100, { message: 'Description must be between 5 and 100 characters' })
     description: string;
 
+    @IsOptional()
+    @IsUrl()
+    images: string;
+    
     @IsOptional()
     @IsUUID('4', { message: 'Each restaurent ID must be a valid UUID' })
     restaurantId: string; // For restaurantId, if it's just an ID reference

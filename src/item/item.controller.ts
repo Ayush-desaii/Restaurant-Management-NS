@@ -9,9 +9,14 @@ import {
     Put, 
     ParseIntPipe, 
     NotFoundException, 
-    BadRequestException 
+    BadRequestException,
+    UseInterceptors,
+    UploadedFile
   } from '@nestjs/common';
   import { ItemsService } from './item.service'  // Import User service
+  import { CloudinaryService } from 'src/Image/image.service';
+  import { UploadController } from 'src/Image/image.controller';
+  import { FileInterceptor } from '@nestjs/platform-express';
   import { CreateItemDTO } from './create-item.dto';  // DTO with validations
   import { UpdateItemDTO } from './update-item.dot'  // DTO with validations
   import { Items } from '../entities/item.entity';
@@ -22,8 +27,22 @@ import {
   
     // Create a new user with validation
     @Post()
-    async createItem(@Body() itemDTO: CreateItemDTO): Promise<Items> {
+    @UseInterceptors(FileInterceptor('file'))
+    async createItem(@Body() itemDTO: CreateItemDTO, @UploadedFile() file: Express.Multer.File): Promise<Items> {
       try {
+
+        const upCont = new UploadController(new CloudinaryService());
+
+        if (!file) {
+          throw new BadRequestException('No file uploaded.');
+        }
+        
+        const i =  await upCont.uploadImage(file).catch(() => {
+          throw new BadRequestException('Invalid file type.');
+        });
+
+        itemDTO.images = i.url;
+
         return await this.ItemsService.createItem(itemDTO);
       } catch (error) {
         throw new BadRequestException(error);

@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsPhoneNumber, IsArray, ArrayNotEmpty, IsUUID, IsNotEmpty, Length } from '@nestjs/class-validator';
+import { IsString, IsEmail, IsPhoneNumber, IsArray, ArrayNotEmpty, IsUUID, IsNotEmpty, Length, IsUrl } from '@nestjs/class-validator';
 import { IsOptional } from '@nestjs/class-validator'; // Optional for update scenarios
 
 export class CreateRestaurantDTO {
@@ -15,6 +15,9 @@ export class CreateRestaurantDTO {
   @IsNotEmpty()
   @IsPhoneNumber( undefined,{ message: 'Mobile number must be valid' })
   phone: string;
+
+  @IsUrl()
+  images: string;
 
   @IsArray()
   @ArrayNotEmpty()
