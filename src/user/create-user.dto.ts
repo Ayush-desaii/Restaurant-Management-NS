@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsPhoneNumber, IsArray, ArrayNotEmpty, IsUUID, IsNotEmpty, Length} from '@nestjs/class-validator';
+import { IsString, IsEmail, IsPhoneNumber, IsArray, ArrayNotEmpty, IsUUID, IsNotEmpty, Length, IsUrl} from '@nestjs/class-validator';
 
 
 export class CreateUserDTO {
@@ -20,6 +20,9 @@ export class CreateUserDTO {
   @IsString()
   @Length(5, 50, { message: 'Address must be between 5 and 50 characters' })
   address: string;
+
+  @IsUrl()
+  images: string;
 
   @IsArray()
   @ArrayNotEmpty()

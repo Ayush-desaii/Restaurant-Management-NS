@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from 'typeorm';
 import { Min } from '@nestjs/class-validator';
 import { Restaurants } from './restaurant.entity';
-import { Images } from '../entities/image.entity';
 
 @Entity()
 export class Items {
@@ -18,8 +17,8 @@ export class Items {
   @Column('varchar', { length: 100 })
   description: string;
 
-  @OneToOne(() => Images, (images) => images.item)
-  images: Images
+  @Column()
+  images: string;
 
   @ManyToOne(() => Restaurants, (restaurant) => restaurant.items)
   restaurent: Restaurants;

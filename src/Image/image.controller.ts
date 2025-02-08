@@ -2,11 +2,10 @@ import { Controller, Post, UploadedFile, UseInterceptors, BadRequestException } 
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from './image.service'; // Using the service you provided
 
-@Controller('upload')
+//@Controller('upload')
 export class UploadController {
   constructor(private readonly cloudinaryService: CloudinaryService) {}
 
-  @Post('image')
   @UseInterceptors(FileInterceptor('file')) // Handle file upload
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
     if (!file) {

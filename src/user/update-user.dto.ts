@@ -6,7 +6,8 @@ import {
     IsArray, 
     IsInt, 
     IsOptional,
-    IsPhoneNumber 
+    IsPhoneNumber, 
+    IsUrl
   } from '@nestjs/class-validator';
   
   export class UpdateUserDTO {
@@ -29,6 +30,10 @@ import {
     @IsString()
     @Length(5, 50, { message: 'Address must be between 5 and 50 characters' })
     address?: string;
+
+    @IsOptional()
+    @IsUrl()
+    images?: string;  
   
     @IsOptional()
     @IsArray({ message: 'Restaurant ID must be an integer' })

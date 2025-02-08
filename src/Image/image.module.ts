@@ -5,7 +5,6 @@ import { CloudinaryService } from './image.service';
 import { UploadController } from './image.controller';
 
 @Module({
-  controllers: [UploadController],
   providers: [CloudinaryProvider, CloudinaryService],
   exports: [CloudinaryProvider, CloudinaryService],
 })

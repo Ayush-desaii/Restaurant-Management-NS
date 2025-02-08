@@ -9,7 +9,6 @@ import {
   import { Items } from "./item.entity";
   import { Users } from "./user.entity";
   import { Orders } from "./order.entity";
-  import { Images } from "../entities/image.entity";
   
   @Entity()
   export class Restaurants {
@@ -25,8 +24,8 @@ import {
     @Column("varchar", { length: 10 })
     phone: string;
 
-    @OneToOne(() => Images, (images) => images.restaurant)
-    images: Images
+    @Column()
+    images: string
   
     @OneToMany(() => Items, (items) => items.restaurent)
     items: Items[];
